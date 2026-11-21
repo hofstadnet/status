@@ -1,31 +1,74 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Oppetid og statusside for hofstad.net. Upptime sjekker adressene hvert 5. minutt med GitHub Actions,
+# åpner en issue når noe er nede og lukker den når det er oppe igjen. Statussiden publiseres til gh-pages
+# og vises på https://status.hofstad.net. Dokumentasjon: https://upptime.js.org/docs/configuration
+owner: hofstadnet
+repo: status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: hofstad.net
+    url: https://hofstad.net/
+  - name: Flystatus (API)
+    url: https://hofstad.net/api/status
+  - name: Søk
+    url: https://hofstad.net/pagefind/pagefind.js
+  - name: RSS
+    url: https://hofstad.net/rss.xml
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.hofstad.net
+  logoUrl: https://hofstad.net/favicon.svg
+  favicon: https://hofstad.net/favicon.svg
+  name: Hofstad.NET status
+  introTitle: "Status for **hofstad.net**"
+  introMessage: "Oppetid og svartider for siden, sjekket hvert 5. minutt fra GitHub Actions. Kildekoden ligger på [GitHub](https://github.com/hofstadnet/status)."
   navbar:
     - title: Status
       href: /
+    - title: hofstad.net
+      href: https://hofstad.net/
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+i18n:
+  activeIncidents: Pågående hendelser
+  allSystemsOperational: Alt virker som det skal
+  incidentReport: "Hendelse #$NUMBER →"
+  activeIncidentSummary: Åpnet $DATE med $POSTS innlegg
+  anIncidentReport: Hendelsesrapport
+  pastIncidents: Tidligere hendelser
+  pastIncidentsResolved: Løst på $MINUTES minutter med $POSTS innlegg
+  liveStatus: Status nå
+  online: Oppe
+  degraded: Treg
+  down: Nede
+  overallUptime: "Oppetid totalt: $UPTIME"
+  averageResponseTime: "Gjennomsnittlig svartid: $TIMEms"
+  ms: ms
+  loading: Laster
+  navGitHub: GitHub
+  footer: Statussiden er laget med [Upptime](https://upptime.js.org).
+  rateLimitExceededTitle: For mange forespørsler
+  rateLimitExceededIntro: Du har nådd grensen for forespørsler mot GitHub. Prøv igjen om litt.
+  rateLimitExceededWhatDoesErrorMean: Hva betyr dette?
+  rateLimitExceededErrorMeaning: Statussiden henter data fra GitHub, som begrenser antall forespørsler.
+  rateLimitExceededErrorHowCanFix: Hvordan løser jeg det?
+  rateLimitExceededErrorFix: Vent en stund og last siden på nytt.
+  errorTitle: Noe gikk galt
+  errorIntro: Statusen kunne ikke hentes.
+  errorText: Prøv igjen om litt.
+  errorHome: Til statussiden
+  pastScheduledMaintenance: Tidligere planlagt vedlikehold
+  scheduledMaintenance: Planlagt vedlikehold
+  scheduledMaintenanceSummaryStarted: Startet $DATE, varer $DURATION minutter
+  scheduledMaintenanceSummaryStarts: Starter $DATE, varer $DURATION minutter
+  startedAt: Startet
+  startsAt: Starter
+  duration: Varighet
+  durationMin: $DURATION minutter
+  incidentCompleted: Fullført
+  incidentScheduled: Planlagt
+  duration24H: 24 timer
+  duration7D: 7 dager
+  duration30D: 30 dager
+  duration1Y: 1 år
+  durationAll: Alt
