@@ -23,7 +23,8 @@ svarer igjen. Historikken ligger i `history/`, svartidene i `api/` og grafene i 
 - **Låste Actions:** organisasjonen krever at alle Actions er låst til en commit-SHA. Malen bruker tagger,
   så alle `uses:` er låst for hånd.
 - **Fjernede arbeidsflyter:** Setup CI, Update Template og Updates CI er tatt ut. De skriver om arbeidsflytene
-  automatisk og ville fjernet låsingen. Oppdater Upptime ved å bytte SHA-ene i `.github/workflows/` for hånd.
+  automatisk og ville fjernet låsingen. Dependabot (`.github/dependabot.yml`) foreslår nye versjoner
+  hver måned som PR-er.
 - **Rettigheter:** hver arbeidsflyt ber om `contents`, `issues` og `actions` med skrivetilgang i egen
   `permissions`-blokk, fordi organisasjonen bare gir lesetilgang som standard. Ingen personlig tilgangsnøkkel
   (PAT) er i bruk.
