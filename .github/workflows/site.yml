@@ -37,6 +37,9 @@ jobs:
         with:
           client-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ env.GH_APP_PRIVATE_KEY }}
+          # Bare det Upptime trenger: committe resultatene og lage/lukke saker.
+          permission-contents: write
+          permission-issues: write
 
       - name: Fjern appnøkkelen fra miljøet
         if: ${{ always() }}
