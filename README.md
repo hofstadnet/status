@@ -8,14 +8,14 @@ og kjører bare på GitHub Actions, Issues og Pages.
 
 Hvert 5. minutt, fra `.upptimerc.yml`:
 
-| Navn            | Adresse                                  |
-| --------------- | ---------------------------------------- |
-| hofstad.net     | https://hofstad.net/                     |
-| Flystatus (API) | https://hofstad.net/api/status           |
-| Søk             | https://hofstad.net/pagefind/pagefind.js |
-| RSS             | https://hofstad.net/rss.xml              |
-| Forside (engelsk) | https://hofstad.net/en/                |
-| RSS (engelsk)   | https://hofstad.net/en/rss.xml           |
+| Navn              | Adresse                                  |
+| ----------------- | ---------------------------------------- |
+| hofstad.net       | https://hofstad.net/                     |
+| Flystatus (API)   | https://hofstad.net/api/status           |
+| Søk               | https://hofstad.net/pagefind/pagefind.js |
+| RSS               | https://hofstad.net/rss.xml              |
+| Forside (engelsk) | https://hofstad.net/en/                  |
+| RSS (engelsk)     | https://hofstad.net/en/rss.xml           |
 
 Når en adresse ikke svarer, åpnes en issue i dette repoet, og GitHub varsler eier. Issuen lukkes når adressen
 svarer igjen. Historikken ligger i `history/`, svartidene i `api/` og grafene i `graphs/`.
