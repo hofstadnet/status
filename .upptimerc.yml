@@ -13,6 +13,10 @@ sites:
     url: https://hofstad.net/pagefind/pagefind.js
   - name: RSS
     url: https://hofstad.net/rss.xml
+  - name: hofstad.net (engelsk)
+    url: https://hofstad.net/en/
+  - name: RSS (engelsk)
+    url: https://hofstad.net/en/rss.xml
 
 status-website:
   cname: status.hofstad.net
