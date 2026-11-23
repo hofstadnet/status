@@ -70,5 +70,41 @@
     "timeMonth": 106,
     "timeYear": 106,
     "dailyMinutesDown": {}
+  },
+  {
+    "name": "hofstad.net (engelsk)",
+    "url": "https://hofstad.net/en/",
+    "icon": "https://icons.duckduckgo.com/ip3/hofstad.net.ico",
+    "slug": "hofstad-net-engelsk",
+    "status": "up",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
+    "time": 129,
+    "timeDay": 129,
+    "timeWeek": 129,
+    "timeMonth": 129,
+    "timeYear": 129,
+    "dailyMinutesDown": {}
+  },
+  {
+    "name": "RSS (engelsk)",
+    "url": "https://hofstad.net/en/rss.xml",
+    "icon": "https://icons.duckduckgo.com/ip3/hofstad.net.ico",
+    "slug": "rss-engelsk",
+    "status": "up",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
+    "time": 39,
+    "timeDay": 39,
+    "timeWeek": 39,
+    "timeMonth": 39,
+    "timeYear": 39,
+    "dailyMinutesDown": {}
   }
 ]
