@@ -8,9 +8,10 @@ can.
 
 ## What is in place
 
-- Force push and deletion of `main` are blocked (branch ruleset «Main protection»).
-- Pull requests run `dependency-review` (no dependencies with known vulnerabilities), `workflow-security` (zizmor) and
-  CodeQL code scanning.
+- All changes to `main` go through a pull request (branch ruleset «Main protection»). Force push and deletion of `main`
+  are blocked.
+- Required checks: `dependency-review` (no dependencies with known vulnerabilities) and `workflow-security` (zizmor),
+  plus CodeQL code scanning (high or higher blocks the merge).
 - Actions are pinned to commit SHAs and updated monthly by Dependabot, with a cooldown of 7 days (30 for major
   versions). Patch and minor updates of Actions are merged automatically when all required checks pass
   (`dependabot-automerge.yml`). Other updates are merged by hand.
@@ -20,8 +21,10 @@ can.
 
 ## Specific to this repository
 
-- Upptime commits its results to `main` with the workflow token (`GITHUB_TOKEN`). The Upptime jobs ask for Contents
-  and Issues, nothing else.
+- Upptime commits its results to `main` with a token from the GitHub App «HofstadNET Status». The token lasts one
+  hour, covers only this repository and has only Contents and Issues. The app key is in the environment `status` (only
+  `main`).
 - The jobs that commit keep that token in the checkout. The other jobs use `persist-credentials: false`.
+- The app is the only bypass in the ruleset for `main`.
 - The status page is served by GitHub Pages, which cannot set security headers. The page is static, with no forms,
   cookies or third-party scripts.

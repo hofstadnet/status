@@ -1,6 +1,6 @@
 # Sjekker alle adressene i .upptimerc.yml hvert 5. minutt, og lager eller lukker saker når noe går ned eller opp igjen.
-# Upptime-workflow, skrevet om for HofstadNET (README «Workflowene»): låste versjoner og bare de rettighetene jobben
-# trenger.
+# Upptime-workflow, skrevet om for HofstadNET (README «Workflowene»): låste versjoner, miljøet «status» (bare main) og
+# GitHub-appen «HofstadNET Status» i stedet for et personlig token. Appens token varer én time og gjelder bare dette repoet.
 
 name: Uptime CI
 
@@ -20,33 +20,25 @@ jobs:
     name: Sjekk status
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    environment: status
     permissions:
-      contents: write # committe resultatene
-      issues: write # lage og lukke saker
-    env:
-      GH_APP_PRIVATE_KEY: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      contents: read
     steps:
-      - name: Token fra GitHub-appen, hvis den er satt opp
-        id: app_token
-        if: ${{ vars.GH_APP_ID != '' && env.GH_APP_PRIVATE_KEY != '' }}
+      - name: Token fra GitHub-appen «HofstadNET Status»
+        id: app
         uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
         with:
-          client-id: ${{ vars.GH_APP_ID }}
-          private-key: ${{ env.GH_APP_PRIVATE_KEY }}
-          # Bare det Upptime trenger: committe resultatene og lage/lukke saker.
+          client-id: ${{ vars.STATUS_APP_ID }}
+          private-key: ${{ secrets.STATUS_APP_PRIVATE_KEY }}
+          # Bare det Upptime trenger: committe resultatene og lage/lukke saker. Ikke Workflows eller Actions.
           permission-contents: write
           permission-issues: write
 
-      - name: Fjern appnøkkelen fra miljøet
-        if: ${{ always() }}
-        shell: bash
-        run: echo "GH_APP_PRIVATE_KEY=" >> "$GITHUB_ENV"
-
-      # Upptime committer resultatene til main selv, så legitimasjonen må bli liggende i checkouten.
+      # Upptime committer resultatene til main med appens token, så legitimasjonen må bli liggende i checkouten.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
-          token: ${{ steps.app_token.outputs.token || secrets.GH_PAT || github.token }}
+          token: ${{ steps.app.outputs.token }}
           persist-credentials: true # zizmor: ignore[artipacked]
 
       - name: Sjekk adressene
@@ -54,5 +46,5 @@ jobs:
         with:
           command: "update"
         env:
-          GH_PAT: ${{ steps.app_token.outputs.token || secrets.GH_PAT || github.token }}
+          GH_PAT: ${{ steps.app.outputs.token }}
           SECRETS_CONTEXT: "{}"
