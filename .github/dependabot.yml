@@ -1,6 +1,6 @@
 # Dependabot holder de SHA-låste Actions i arbeidsflytene oppdatert, også upptime/uptime-monitor. Upptimes egen
 # «Update Template» er tatt ut (se README), så dette er måten Upptime oppdateres på. Én samlet PR per måned.
-# cooldown: nye versjoner foreslås først etter 7 dager (major etter 30), så en kompromittert release rekker å bli oppdaget.
+# cooldown: nye versjoner foreslås først etter 7 dager (major etter 30 for økosystemer som støtter det, ikke github-actions), så en kompromittert release rekker å bli oppdaget.
 version: 2
 updates:
   - package-ecosystem: github-actions
@@ -10,7 +10,6 @@ updates:
     labels: ["dependencies"]
     cooldown:
       default-days: 7
-      semver-major-days: 30
     groups:
       actions:
         patterns: ["*"]
