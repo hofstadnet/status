@@ -22,7 +22,7 @@ status-website:
   cname: status.hofstad.net
   logoUrl: https://hofstad.net/favicon.svg
   favicon: https://hofstad.net/favicon.svg
-  name: Hofstad.NET status
+  name: Hofstad.NET-status
   introTitle: "Status for **hofstad.net**"
   introMessage: "Oppetid og svartider for siden, sjekket hvert 5. minutt fra GitHub Actions. Kildekoden ligger på [GitHub](https://github.com/hofstadnet/status)."
   navbar:
