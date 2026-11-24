@@ -28,9 +28,10 @@ Upptimes mal er **ikke** brukt direkte. Workflowene i `.github/workflows/` er sk
   foreslår nye versjoner hver måned som PR-er, også av `upptime/uptime-monitor`.
 - **Upptimes «Setup CI», «Update Template» og «Updates CI» er tatt ut.** De henter workflows fra Upptime og overskriver
   alt under `.github/`, også låsingen og sikkerhetssjekkene. Nye Upptime-versjoner tas inn med en pull request.
-- **Minst mulig rettigheter.** Ingen rettigheter som standard (`permissions: {}`). Hver Upptime-jobb ber bare om
-  `contents: write` (committe resultatene) og `issues: write` (lage og lukke saker). Ingen personlig tilgangsnøkkel
-  (PAT) er i bruk.
+- **Ingen personlig token.** GitHub-appen «HofstadNET Status» (bare installert på dette repoet, bare Contents og Issues)
+  gir et token som varer én time, og hver jobb ber bare om `contents: write` og `issues: write`. Jobbene har ellers
+  ingen rettigheter (`permissions: {}` og `contents: read`). App-ID og nøkkel ligger i miljøet `status` (bare `main`):
+  variabelen `STATUS_APP_ID` og secreten `STATUS_APP_PRIVATE_KEY`.
 
 | Workflow                   | Når                             | Hva                                                                  |
 | -------------------------- | ------------------------------- | -------------------------------------------------------------------- |
@@ -44,6 +45,8 @@ Upptimes mal er **ikke** brukt direkte. Workflowene i `.github/workflows/` er sk
 | `scorecard.yml`            | ukentlig                        | OpenSSF Scorecard                                                    |
 | `dependabot-automerge.yml` | PR-er fra Dependabot            | Slår på automatisk merge for patch og minor av Actions               |
 
+Upptime committer rett til `main` med appens token, så appen står i unntakslisten (bypass) i regelsettet for `main`.
+
 ## Oppsett utenfor repoet
 
 - GitHub Pages: Settings → Pages → _Deploy from a branch_ → `gh-pages` / `(root)`, egendefinert domene
@@ -52,11 +55,11 @@ Upptimes mal er **ikke** brukt direkte. Workflowene i `.github/workflows/` er sk
 
 ## Avvik fra retningslinjene
 
-| Regel                                              | Avvik                                                                                                                              | Grunn                                                                                                                                                      |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `persist-credentials: false` på `actions/checkout` | Jobbene som committer resultater, beholder tokenet i checkouten (`zizmor: ignore[artipacked]`). Sikkerhetssjekkene bruker `false`. | Upptime pusher selv til `main` og `gh-pages`.                                                                                                              |
-| Pull request for alle endringer i `main`           | Regelsettet «Main protection» krever ikke PR eller statussjekker, bare at `main` ikke kan slettes eller force-pushes.              | Upptime committer resultatene rett til `main` med arbeidsflyt-tokenet. Påkrevde sjekker ville stoppet de pushene, og tokenet kan ikke stå i unntakslisten. |
-| Sikkerhetshoder                                    | status.hofstad.net har ikke CSP eller de andre hodene.                                                                             | GitHub Pages kan ikke sette hoder. Siden er statisk, uten skjemaer, informasjonskapsler eller skript fra tredjeparter.                                     |
+| Regel                                              | Avvik                                                                                                | Grunn                                                                                                                  |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `persist-credentials: false` på `actions/checkout` | Jobbene som committer resultater, beholder appens token i checkouten (`zizmor: ignore[artipacked]`). | Upptime pusher selv. Tokenet varer én time og gjelder bare dette repoet.                                               |
+| Pull request for alle endringer i `main`           | Appen «HofstadNET Status» står i unntakslisten i regelsettet.                                        | Upptime committer resultatene hvert 5. minutt. Appen har bare Contents og Issues.                                      |
+| Sikkerhetshoder                                    | status.hofstad.net har ikke CSP eller de andre hodene.                                               | GitHub Pages kan ikke sette hoder. Siden er statisk, uten skjemaer, informasjonskapsler eller skript fra tredjeparter. |
 
 ## Sikkerhet
 
